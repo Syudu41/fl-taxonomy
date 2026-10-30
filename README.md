@@ -2,7 +2,7 @@
 
 A website for a comprehensive FL survey, supporting Sudarshan Balaji’s PhD research in federated learning, secure FL, and applications. Work in progress.
 
-**[Website](https://syudu41.github.io/flsurvey/)** · [Website guide](website/README.md) · [Session handoff](website-status.md) · [Reference papers](ref-papers/README.md)
+**[Website](https://syudu41.github.io/fl-taxonomy/)** · [Website guide](website/README.md) · [Session handoff](website-status.md) · [Reference papers](ref-papers/README.md)
 
 The prototype includes an interactive concept cylinder, 11 sourced aggregation/optimization notes with worked examples, a learning guide, a 12-paper bank, and a captioned Manim video of one FedAvg round. Other dimensions remain a reading plan. Paper comparisons and a training simulator are pending.
 

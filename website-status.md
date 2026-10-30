@@ -16,8 +16,8 @@ Sudarshan Balaji’s first-year PhD source bank for a comprehensive survey of FL
 
 | Item | Location |
 | --- | --- |
-| Repository | https://github.com/Syudu41/flsurvey |
-| Live site | https://syudu41.github.io/flsurvey/ |
+| Repository | https://github.com/Syudu41/fl-taxonomy |
+| Live site | https://syudu41.github.io/fl-taxonomy/ |
 | Branch | `main` |
 | Configuration | `website/mkdocs.yml` |
 | Generated output | `website/site/`, ignored by Git |
@@ -100,7 +100,7 @@ GitHub Pages → SVG cylinder, reading notes, paper filters
 
 `on_files` creates `readme-note.md` aliases so READMEs can coexist with index pages. `on_page_markdown` adds concept layouts/breadcrumbs and generated dimension listings. The homepage embeds navigation metadata in hidden DOM elements; JavaScript constructs the cylinder from these, without a second hardcoded concept catalog.
 
-SVG coordinates use sine/cosine projection; animation uses requestAnimationFrame. A second barrel instance supplies the expanded dialog. Native dropdowns provide an alternative to direct SVG interaction. Reduced motion, focus restoration, resizing, and mobile internal scrolling are supported. URLs use `.html` and MkDocs URL filtering for the `/flsurvey/` project prefix.
+SVG coordinates use sine/cosine projection; animation uses requestAnimationFrame. A second barrel instance supplies the expanded dialog. Native dropdowns provide an alternative to direct SVG interaction. Reduced motion, focus restoration, resizing, and mobile internal scrolling are supported. URLs use `.html` and MkDocs URL filtering for the `/fl-taxonomy/` project prefix.
 
 Math uses `$...$` or separate `$$` blocks. Arithmatex preserves notation; **locally vendored MathJax** renders SVG, including without an internet connection. This is browser math typesetting, not a LaTeX document compiler.
 

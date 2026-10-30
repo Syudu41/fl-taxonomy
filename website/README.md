@@ -91,7 +91,7 @@ The workflow illustrates one honest, synchronous, full-participation round. It i
 
 ## Publish
 
-Live: https://syudu41.github.io/flsurvey/
+Live: https://syudu41.github.io/fl-taxonomy/
 
 Push website changes to `main`; `.github/workflows/pages.yml` builds and deploys GitHub Pages. Committing alone does not publish. Check the Actions result before assuming a release is live.
 
