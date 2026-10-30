@@ -4,11 +4,11 @@ about_title: What is federated learning?
 about_summary: Start with the participants, the training round, and why keeping raw data local does not by itself guarantee privacy.
 ---
 
-# A comprehensive survey of federated learning.
+# Explore federated learning.
 
-A source bank for understanding FL: its methods, assumptions, security, and applications. Explore concepts visually, then follow the notes back to their papers.
+A developing survey of federated learning, secure FL, and applications. Learn the concepts, work through the mathematics, and trace the original papers.
 
-This prototype starts with five dimensions. Select a layer of the cylinder to learn what it covers.
+Choose a dimension and drag the cylinder. Inspect a cell to open its notes and sources.
 
 ## Aggregation {#aggregation}
 

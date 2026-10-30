@@ -1,0 +1,105 @@
+- id: P001
+  title: Communication-Efficient Learning of Deep Networks from Decentralized Data
+  authors: H. Brendan McMahan, Eider Moore, Daniel Ramage, Seth Hampson, Blaise Agüera y Arcas
+  year: 2017
+  kind: Original paper
+  venue: AISTATS · PMLR 54, 1273–1282
+  publication: Conference paper
+  url: https://proceedings.mlr.press/v54/mcmahan17a.html
+  pdf: https://proceedings.mlr.press/v54/mcmahan17a/mcmahan17a.pdf
+  local_file: mcmahan-2017-fedavg.pdf
+  topics: [Aggregation, Optimization, FedAvg]
+  read_next: Section 2 for the objective, Algorithm 1 for the training round, then Section 3 for experimental conditions.
+  note: dimensions/aggregation/fedavg.html
+  note_label: Introductory note available
+  collected: '2026-10-22'
+  bibtex: |
+    @inproceedings{mcmahan2017fedavg,
+      title={Communication-Efficient Learning of Deep Networks from Decentralized Data},
+      author={McMahan, H. Brendan and Moore, Eider and Ramage, Daniel and Hampson, Seth and Ag{\"u}era y Arcas, Blaise},
+      booktitle={Proceedings of the 20th International Conference on Artificial Intelligence and Statistics},
+      volume={54}, pages={1273--1282}, year={2017}, publisher={PMLR},
+      url={https://proceedings.mlr.press/v54/mcmahan17a.html}
+    }
+- id: P002
+  title: Advances and Open Problems in Federated Learning
+  authors: Peter Kairouz et al.
+  year: 2021
+  kind: Survey
+  venue: Foundations and Trends in Machine Learning · 14(1–2), 1–210
+  publication: Journal monograph; local copy is arXiv v3
+  url: https://arxiv.org/abs/1912.04977v3
+  pdf: https://arxiv.org/pdf/1912.04977v3
+  local_file: kairouz-2021-fl-open-problems-arxiv-v3.pdf
+  topics: [FL overview, Privacy, Open problems]
+  read_next: Start with the introduction to map the setting and vocabulary. Follow its references to original studies.
+  collected: '2026-10-22'
+  bibtex: |
+    @article{kairouz2021fl,
+      title={Advances and Open Problems in Federated Learning},
+      author={Kairouz, Peter and others},
+      journal={Foundations and Trends in Machine Learning},
+      volume={14}, number={1--2}, pages={1--210}, year={2021},
+      doi={10.1561/2200000083}
+    }
+- id: P003
+  title: 'A Survey of Federated Learning: Advances in Architecture, Synchronization, and Security Threats'
+  authors: Faisal Mahmud, Fahim Mahmud, Rashedur M. Rahman
+  year: 2026
+  kind: Survey
+  venue: Computers, Materials & Continua · 86(3)
+  publication: Online December 2025; 2026 issue
+  url: https://doi.org/10.32604/cmc.2025.073519
+  pdf: https://file.techscience.com/uploads/attached/file/20251211/20251211162907_74245.pdf
+  topics: [Architecture, Synchronization, Security]
+  read_next: Sections 3 and 5 for its taxonomy and fundamentals. Record which categories overlap before adopting the taxonomy.
+  collected: '2026-10-22'
+  availability: Source recorded; PDF download previously returned HTTP 403.
+  bibtex: |
+    @article{mahmud2026survey,
+      title={A Survey of Federated Learning: Advances in Architecture, Synchronization, and Security Threats},
+      author={Mahmud, Faisal and Mahmud, Fahim and Rahman, Rashedur M.},
+      journal={Computers, Materials \& Continua}, volume={86}, number={3},
+      year={2026}, doi={10.32604/cmc.2025.073519}
+    }
+- id: P004
+  title: 'The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape'
+  authors: Joshua C. Zhao et al.
+  year: 2025
+  kind: Survey
+  venue: ACM Computing Surveys; stored author manuscript is arXiv v3
+  publication: Author manuscript records acceptance to ACM Computing Surveys
+  url: https://arxiv.org/abs/2405.03636v3
+  pdf: https://arxiv.org/pdf/2405.03636v3
+  local_file: zhao-2025-federation-strikes-back-arxiv-v3.pdf
+  topics: [Privacy, Attacks, Defenses]
+  read_next: Identify the attacker, observed information, assumptions, and claimed privacy failure before reading a defense.
+  collected: '2026-10-22'
+  bibtex: |
+    @misc{zhao2025federation,
+      title={The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape},
+      author={Zhao, Joshua C. and others}, year={2025},
+      eprint={2405.03636}, archivePrefix={arXiv}, version={3},
+      note={Author manuscript; related publication DOI: 10.1145/3724113},
+      url={https://arxiv.org/abs/2405.03636v3}
+    }
+- id: P005
+  title: 'On the Security and Privacy of Federated Learning: A Survey with Attacks, Defenses, Frameworks, Applications, and Future Directions'
+  authors: Daniel M. Jimenez-Gutierrez et al.
+  year: 2025
+  kind: Survey
+  venue: arXiv:2508.13730v1
+  publication: Stored version is an arXiv preprint, August 2025
+  url: https://arxiv.org/abs/2508.13730v1
+  pdf: https://arxiv.org/pdf/2508.13730v1
+  local_file: jimenez-gutierrez-2025-fl-security-privacy-arxiv-v1.pdf
+  topics: [Security, Privacy, Threat models]
+  read_next: Separate security-enhancing techniques from privacy-preserving techniques; trace specific claims to original papers.
+  collected: '2026-10-22'
+  bibtex: |
+    @misc{jimenez2025security,
+      title={On the Security and Privacy of Federated Learning: A Survey with Attacks, Defenses, Frameworks, Applications, and Future Directions},
+      author={Jimenez-Gutierrez, Daniel M. and others}, year={2025},
+      eprint={2508.13730}, archivePrefix={arXiv}, version={1},
+      url={https://arxiv.org/abs/2508.13730v1}
+    }

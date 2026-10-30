@@ -1,37 +1,27 @@
 # Federated Learning Survey
 
-A website for a comprehensive FL survey: visual concept navigation, research notes, paper summaries, and source references supporting PhD research in FL, secure FL, and applications.
+A website for a comprehensive FL survey, supporting Sudarshan Balaji’s PhD research in federated learning, secure FL, and applications. Work in progress.
 
-> [!TIP]
-> Work by Sudarshan Balaji 
+**[Website](https://syudu41.github.io/FL-survey/)** · [Website guide](website/README.md) · [Session handoff](website-status.md) · [Reference papers](ref-papers/README.md)
 
-> [!IMPORTANT]
-> This is a work in progress. 
-
-**[Visit the website](https://syudu41.github.io/FL-survey/)** · [Website guide](website/README.md) · [Reference papers](ref-papers/README.md)
-
-The MkDocs prototype includes a sourced FL introduction and introductory FedAvg note with LaTeX equations; other concept notes remain placeholders. A simulator for comparing aggregation methods is planned.
+The prototype includes a rotating concept cylinder, a learning guide, a worked FedAvg example with equations, and a searchable paper bank. Other concept notes remain placeholders. Paper comparisons and a training simulator are pending.
 
 ## Content workflow
 
 ![Workflow: edit or add Markdown content, preview locally, push to main, and automatically publish the survey.](website/assets/workflow.svg)
 
-- **Update a concept:** edit its file in `website/docs/dimensions/<dimension>/`.
-- **Add a concept:** create a `.md` file or README in that folder. Navigation and listings update automatically on rebuild.
-- **Add a dimension:** create its folder and `index.md`, then register it in `website/docs/index.md`. It inherits the cylinder styling and controls.
+- **Update/add a concept:** edit or create Markdown under `website/docs/dimensions/<dimension>/`. Listings and the cylinder update on rebuild.
+- **Add a dimension:** create its folder and `index.md`, then register it in `website/docs/index.md`.
+- **Add a paper:** add a record to `website/data/papers.yml`; keep reading copies in `ref-papers/`.
 
-Preview using the [website guide](website/README.md), then commit and push to `main`. GitHub Actions publishes the update. Each dimension shows up to five concepts; additional concepts enable the arrows.
+## Preview and publish
 
-### Content update
+After the one-time environment setup in the [website guide](website/README.md):
 
-From project root:
-
-```python
+```sh
 source website/.venv/bin/activate
 cd website
 mkdocs serve
 ```
 
-Once preview is satisfied, commit to github to see live website.
-
----
+`serve` builds automatically. Use `mkdocs build --strict` for a release check. Commit and **push to main** to publish through GitHub Actions.

@@ -23,6 +23,19 @@ def read_document(path):
     return title, str(meta.get('description') or summary), meta
 
 
+def concept_coverage(document, meta):
+    text = document.read_text(encoding='utf-8')
+    placeholder = bool(re.search(r'lorem ipsum|placeholder|future fieldnote|future study', text, re.I))
+    inferred = {
+        'overview': not placeholder,
+        'math': not placeholder and bool(re.search(r'^\$\$', text, re.M)),
+        'example': not placeholder and bool(re.search(r'^## .*(example|calculation|worked|complete round)', text, re.I | re.M)),
+        'sources': not placeholder and bool(re.search(r'\]\(https://', text)),
+        'check': not placeholder and bool(re.search(r'^## .*self.check', text, re.I | re.M)),
+    }
+    return {key: bool(meta.get('coverage', {}).get(key, value)) for key, value in inferred.items()}
+
+
 def on_config(config):
     _catalog.clear()
     _readmes.clear()
@@ -50,7 +63,9 @@ def on_config(config):
             entry = {'title': title, 'summary': summary, 'source': source,
                      'url': str(Path(source).with_suffix('.html')).replace('\\', '/'),
                      'dimension': dimension_title, 'slug': listing.parent.name,
-                     'order': meta.get('order', 1000)}
+                     'order': meta.get('order', 1000),
+                     'coverage': concept_coverage(document, meta),
+                     'anchors': meta.get('section_anchors', {})}
             _catalog[source] = entry
             concepts.append(entry)
         concepts.sort(key=lambda entry: (entry['order'], entry['title'].casefold(), entry['source']))
@@ -58,6 +73,12 @@ def on_config(config):
     if exclusions:
         config.exclude_docs = (config.exclude_docs or PathSpec([])) + PathSpec.from_lines('gitignore', exclusions)
     config.extra['dimension_concepts'] = dimensions
+    paper_file = Path(config.config_file_path).parent / 'data' / 'papers.yml'
+    papers = yaml.safe_load(paper_file.read_text(encoding='utf-8')) or []
+    library = Path(config.config_file_path).parent.parent / 'ref-papers'
+    for paper in papers:
+        paper['local_available'] = bool(paper.get('local_file') and (library / paper['local_file']).is_file())
+    config.extra['papers'] = papers
     return config
 
 

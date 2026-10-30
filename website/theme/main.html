@@ -8,61 +8,38 @@
   <link rel="stylesheet" href="{{ 'assets/atlas.css' | url }}">
   {% if page.meta.math or 'class="arithmatex"' in page.content %}
   <script src="{{ 'assets/math-config.js' | url }}" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" defer></script>
+  <script src="{{ 'assets/vendor/mathjax/tex-svg.js' | url }}" defer></script>
   {% endif %}
+  <script src="{{ 'assets/site.js' | url }}" defer></script>
 </head>
 <body>
-  <header class="masthead"><a class="brand" href="{{ 'index.html' | url }}">Federated Learning</a></header>
+  <header class="masthead"><a class="brand" href="{{ 'index.html' | url }}">Federated Learning<span class="brand-detail">A research source bank</span></a><nav aria-label="Main navigation"><a href="{{ 'foundations.html' | url }}">Learning guide</a><a href="{{ 'papers.html' | url }}">Paper bank</a><a href="{{ 'about.html' | url }}">About</a></nav></header>
   {% if page.meta.layout == 'home' %}
   <main class="home">
-    <section class="home-copy">
-      <div class="eyebrow">CONCEPTS · METHODS · SOURCES</div>
-      <div class="intro">{{ page.content.split('<h2')[0] | safe }}</div>
-      <section class="feature-panel" id="feature-panel" aria-live="polite">
-        <span class="eyebrow" id="dimension-number"></span>
-        <h2 id="feature-title"></h2>
-        <div id="feature-description"></div>
-        <a id="explore-all" class="explore-button" href="#">Explore all <span aria-hidden="true">↗</span></a>
-      </section>
-    </section>
-    <section class="object-area" aria-label="Choose a federated learning dimension">
-      <div class="object-heading"><span class="eyebrow">THE DIMENSIONS OF FL</span><span>01 — 05</span></div>
-      <div class="glass-core" aria-hidden="true"></div><div class="cylinder" id="cylinder"></div><div class="object-base" aria-hidden="true"></div>
-      <p class="object-caption">Select a layer to explore its dimension</p>
-    </section>
+    <section class="home-intro"><div><span class="eyebrow">UNDERSTAND THE CONCEPTS. TRACE THE SOURCES.</span><div class="intro">{{ page.content.split('<h2')[0] | safe }}</div></div><aside class="start-card"><span class="eyebrow">A STARTING POINT</span><h2>Build the foundations.</h2><p>Model → loss → gradient → local training → FedAvg.</p><a href="{{ 'foundations.html' | url }}">Start the learning guide <span aria-hidden="true">↗</span></a></aside></section>
+    <section class="survey-map" aria-label="Explore the federated learning survey"><div id="dimension-tabs" class="dimension-tabs" aria-label="Choose a dimension"></div><div id="taxonomy-home"></div></section>
+    <section class="home-path" aria-label="Suggested reading route"><a href="{{ 'about.html' | url }}"><span class="eyebrow">01 / THE SETTING</span><h2>What is FL?</h2><p>Participants, training rounds, privacy, and the scope of this survey.</p><span>Read the introduction ↗</span></a><a href="{{ 'dimensions/aggregation/fedavg.html' | url }}"><span class="eyebrow">02 / THE FIRST STUDY</span><h2>Work through FedAvg.</h2><p>The objective, local updates, a complete numerical round, and checks.</p><span>Open the note ↗</span></a><a href="{{ 'papers.html' | url }}"><span class="eyebrow">03 / THE EVIDENCE</span><h2>Follow the papers.</h2><p>Find the source, record the version, and keep track of what to read next.</p><span>Browse the collection ↗</span></a></section>
   </main>
-  <section class="home-about" aria-labelledby="about-heading">
-    <div><span class="eyebrow">START HERE</span><h2 id="about-heading">{{ page.meta.about_title }}</h2><p>{{ page.meta.about_summary }}</p></div>
-    <a class="explore-button" href="{{ 'about.html' | url }}">Read the introduction <span aria-hidden="true">↗</span></a>
-  </section>
-  <dialog id="dimension-view" aria-labelledby="concept-heading">
-    <header class="dimension-toolbar"><button id="close-concepts">← All dimensions</button><h2 id="concept-heading"></h2><span>Federated Learning</span></header>
-    <div class="dimension-content">
-      <div class="drum-perspective">
-        <div class="drum-world">
-          <div class="drum-shell" aria-hidden="true">
-            <span class="cylinder-rim rim-top"></span><span class="cylinder-rim rim-bottom"></span>
-            <span class="cylinder-edge edge-left"></span><span class="cylinder-edge edge-right"></span>
-          </div>
-          <nav id="concept-rotor" class="concept-rotor" aria-label="Concepts"></nav>
-        </div>
-      </div>
-      <div class="rotation-controls"><button id="rotate-previous" aria-label="Previous concept">←</button><button id="rotate-next" aria-label="Next concept">→</button></div>
-      <p class="rotation-hint">Rotate to browse · Select a name to read</p>
-    </div>
-  </dialog>
+  <dialog id="dimension-view" aria-labelledby="focus-heading"><header class="focus-toolbar"><button id="close-concepts">← Back to the survey</button><h2 id="focus-heading">Explore a concept</h2></header><div id="taxonomy-focus"></div></dialog>
   <div id="markdown-source" hidden>{{ page.content }}</div>
-  <div id="concept-source" hidden>{% for slug, concepts in config.extra.dimension_concepts.items() %}<section data-dimension="{{ slug }}">{% for concept in concepts %}<a href="{{ concept.url | url }}">{{ concept.title }}</a>{% endfor %}</section>{% endfor %}</div>
-  <noscript><style>#markdown-source{display:block!important;padding:2rem}.home{display:none}</style></noscript>
+  <div id="concept-source" hidden>{% for slug, concepts in config.extra.dimension_concepts.items() %}<section data-dimension="{{ slug }}">{% for concept in concepts %}<a href="{{ concept.url | url }}" data-summary="{{ concept.summary }}" data-coverage='{{ concept.coverage | tojson }}' data-anchors='{{ concept.anchors | tojson }}'>{{ concept.title }}</a>{% endfor %}</section>{% endfor %}</div>
+  <noscript><style>#markdown-source{display:block!important;padding:2rem}.survey-map{display:none}</style><p class="no-script">The visual map needs JavaScript. The reading pages and dimension links below remain available.</p></noscript>
   <script src="{{ 'assets/atlas.js' | url }}" defer></script>
   {% else %}
-  <main class="document-page {% if page.meta.layout == 'dimension' %}concept-list{% endif %}">
-    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="{{ 'index.html' | url }}">Home</a><span>/</span>{% if page.meta.dimension %}<a href="{{ page.meta.dimension_url | url }}">{{ page.meta.dimension }}</a><span>/</span>{% endif %}<span aria-current="page">{{ page.title }}</span></nav>
-    <div class="eyebrow">{% if page.meta.layout == 'dimension' %}EXPLORE THE CONCEPTS{% elif page.meta.layout == 'about' %}INTRODUCTION{% else %}CONCEPT NOTES{% endif %}</div>
+  <main class="document-page {% if page.meta.layout == 'dimension' %}concept-list{% endif %} {% if page.meta.layout == 'papers' %}paper-page{% endif %}">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="{{ 'index.html' | url }}">Survey</a><span>/</span>{% if page.meta.dimension %}<a href="{{ page.meta.dimension_url | url }}">{{ page.meta.dimension }}</a><span>/</span>{% endif %}<span aria-current="page">{{ page.title }}</span></nav>
+    <div class="eyebrow">{% if page.meta.layout == 'dimension' %}EXPLORE THE CONCEPTS{% elif page.meta.layout == 'about' %}INTRODUCTION{% elif page.meta.layout == 'guide' %}LEARNING FOUNDATIONS{% elif page.meta.layout == 'papers' %}A TRACEABLE READING COLLECTION{% else %}CONCEPT NOTES{% endif %}</div>
     <article>{{ page.content }}</article>
-    <a class="back-link" href="{% if page.meta.dimension_url %}{{ page.meta.dimension_url | url }}{% else %}{{ 'index.html' | url }}{% endif %}">← {% if page.meta.dimension %}All {{ page.meta.dimension | lower }} concepts{% else %}Back to the dimensions{% endif %}</a>
+    {% if page.meta.layout == 'papers' %}
+    <section class="paper-library" aria-label="Collected papers">
+      <div class="paper-filters"><label>Find a paper<input id="paper-search" type="search" placeholder="Title, author, year, or topic"></label><label>Paper type<select id="paper-kind"><option value="">All types</option><option>Original paper</option><option>Survey</option></select></label></div>
+      <p id="paper-filter-result" class="filter-result" aria-live="polite"></p>
+      <div id="paper-records">{% for paper in config.extra.papers %}<article class="paper-record" data-kind="{{ paper.kind }}" data-search="{{ paper.title }} {{ paper.authors }} {{ paper.year }} {{ paper.topics | join(' ') }}"><div class="paper-top"><span>{{ paper.id }} / {{ paper.year }}</span><span class="badge">{{ paper.kind }}</span><span class="reading-state">Collected</span></div><h2><a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a></h2><p class="paper-authors">{{ paper.authors }}</p><p class="paper-venue">{{ paper.venue }}<br>{{ paper.publication }}</p><div class="paper-topics">{% for topic in paper.topics %}<span>{{ topic }}</span>{% endfor %}</div><p><strong>Read next:</strong> {{ paper.read_next }}</p><p class="paper-availability">{% if paper.local_available %}Reading copy stored in ref-papers/{{ paper.local_file }}{% else %}{{ paper.availability }}{% endif %}</p><div class="paper-actions"><a href="{{ paper.url }}" target="_blank" rel="noopener noreferrer">Source ↗</a><a href="{{ paper.pdf }}" target="_blank" rel="noopener noreferrer">Official PDF ↗</a>{% if paper.note %}<a href="{{ paper.note | url }}">{{ paper.note_label }} ↗</a>{% endif %}<button class="copy-citation" type="button">Copy BibTeX</button></div><details class="citation-details"><summary>BibTeX citation</summary><pre class="bibtex-source">{{ paper.bibtex }}</pre></details></article>{% endfor %}</div>
+    </section>
+    {% endif %}
+    <a class="back-link" href="{% if page.meta.dimension_url %}{{ page.meta.dimension_url | url }}{% else %}{{ 'index.html' | url }}{% endif %}">← {% if page.meta.dimension %}All {{ page.meta.dimension | lower }} concepts{% else %}Back to the survey{% endif %}</a>
   </main>
   {% endif %}
-  <footer><span>Created by {{ config.site_author }}. Built with MkDocs, HTML, CSS, and JavaScript.</span><span>Research prototype · Introductory notes and draft content.</span></footer>
+  <footer><span>Created by Sudarshan Balaji · Built with MkDocs, HTML, CSS, and JavaScript.</span><span>Developing survey · Notes are not claims of completed research.</span></footer>
 </body>
 </html>

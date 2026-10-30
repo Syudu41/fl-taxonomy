@@ -27,4 +27,21 @@ No. Keeping raw data local changes what is shared, but updates may still reveal 
 
 ## Where should I start?
 
-Read [FedAvg](dimensions/aggregation/fedavg.md) for our first equation and worked example, or return to the [dimension cylinder](index.md). This website is a developing survey: introductory notes are being added while many concept pages remain placeholders.
+Begin with [model, loss, gradient, and local training](foundations.md), then read [FedAvg](dimensions/aggregation/fedavg.md) for our first equation and worked example, or return to the [dimension cylinder](index.md). This website is a developing survey: introductory notes are being added while many concept pages remain placeholders.
+
+
+## What this website is building
+
+The survey connects a learning route, a visual map of the notes, and a [paper bank](papers.md). Written notes and collected papers do not establish personal understanding or reproduced results. The first complete worked example is FedAvg; the other dimensions are a developing reading plan.
+
+## Design and research pending
+
+- A structured paper-comparison module is **pending**, not part of this prototype.
+- A secure-FL research question or proposal has not been selected. It should follow the survey and analysis of original studies.
+- Statistical heterogeneity, partial participation, and explicit threat models need deeper notes.
+- A dataset-based FL simulator and reproduction experiments are future work. The learning-rate widget is only an arithmetic illustration.
+
+
+## Visual reference
+
+The rotating, segmented cylinder interaction is inspired by the [Northstar-RF taxonomy on its Home page](https://northstar-rf.pages.dev/). This website uses an independent SVG implementation and FL note metadata. Its cells indicate whether sections of our notes have been written; they are not evidence grades, method rankings, or a completed comparison.

@@ -1,10 +1,8 @@
-# FL Fieldnotes — survey website
+# Federated Learning survey website
 
-A MkDocs website for a comprehensive federated learning survey. Selecting a dimension magnifies its layer into a cylinder showing up to five clickable concept names. With more than five concepts, arrow controls rotate the horizontal 3D ring by one face, looping through all names. A wireframe border outlines the cylinder. All dimensions or Escape returns to the stack. Explore all opens the generated full listing.
+Static MkDocs source bank for a comprehensive FL survey. The prototype has a rotating SVG taxonomy cylinder, introductory learning guide, worked FedAvg note, and searchable paper bank. Other concept notes remain placeholders.
 
-The FL introduction and FedAvg page contain introductory, sourced content. Other concept pages remain placeholders. FedAvg includes a full-participation averaging equation and an arithmetic example; it is not yet a complete literature review or experiment.
-
-## Run locally
+## Preview and build
 
 From the repository root:
 
@@ -14,56 +12,79 @@ website/.venv/bin/pip install -r website/requirements.txt
 website/.venv/bin/mkdocs serve -f website/mkdocs.yml
 ```
 
-Open the URL printed by MkDocs, normally http://127.0.0.1:8000.
-
-## Add concepts automatically
-
-Create a Markdown file under `docs/dimensions/<dimension>/`. You can also create a nested folder with a `README.md`. No navigation edits or front matter are required:
-
-```markdown
-# My new concept
-
-A brief description for the concept listing.
-
-## Details
-
-Write the explanation and cite the sources here.
-```
-
-On the next MkDocs rebuild, the document appears in both the cylinder and Explore all. GitHub Actions rebuilds when the change is pushed. Each page gets its dimension breadcrumb automatically.
-
-Optional YAML front matter supports `title`, `description`, and numeric `order`. The title otherwise comes from the first `# Heading` (or filename); the description comes from its first ordinary paragraph. Concepts sort by `order`, then title. `draft: true` keeps a concept out of the cylinder and listing. README documents are published at `readme-note.html` within their folder so they can coexist with an index page.
-
-- `docs/index.md` contains the homepage and dimension descriptions.
-- `docs/dimensions/<dimension>/index.md` contains the dimension introduction. Its concept listing is generated automatically; do not manually add concept links.
-- All other `.md` files in that dimension, including nested files, are discovered as concepts.
-
-`hooks.py` discovers documents and supplies both navigation views. `theme/main.html` controls the page structure. Styles and interactions are in `docs/assets/`. Fonts use Arial with Helvetica Neue and Helvetica fallbacks. The cylinder is drawn in CSS; keyboard arrows and reduced-motion preferences are supported.
-
-## Mathematics
-
-LaTeX math is preserved by `pymdownx.arithmatex` and rendered by MathJax 3.2.2. Use `$w_t$` for inline notation and a separate `$$` block for an equation:
-
-```text
-$$
-w_{t+1} = \sum_{k=1}^{K} \frac{n_k}{n} w_{t+1}^{(k)}
-$$
-```
-
-MathJax loads automatically on pages containing math (or with `math: true` in front matter). The renderer is loaded from jsDelivr, so rendered equations require a network connection. Markdown content stays local. After a requirements change, reinstall with `website/.venv/bin/pip install -r website/requirements.txt` from the repository root.
-
-## Publishing
-
-Live URL: https://syudu41.github.io/FL-survey/
-
-The workflow in `.github/workflows/pages.yml` builds and publishes the site when website files change on `main`. It can also run manually from GitHub Actions.
+Open the printed URL, normally http://127.0.0.1:8000. `serve` rebuilds automatically. For a release check:
 
 ```sh
 website/.venv/bin/mkdocs build --strict -f website/mkdocs.yml
 ```
 
-The generated website is in `website/site/`, which is ignored by Git. The repository-root `index.html` redirects to this folder for local use after building. GitHub Pages publishes the built output directly, so the public homepage opens without this local redirect.
+## Add or update concepts
 
-Motion reference: [David DeSandro’s horizontal 3D carousel](https://3dtransforms.desandro.com/carousel). Concept names replace image panels.
+Create Markdown under `docs/dimensions/<dimension>/`, including nested files or `README.md`:
 
-Homepage visual reference: [Database Loading by Reijo](https://dribbble.com/shots/26897580-Database-Loading). Its glass edges and internal lighting are adapted to the dimension cylinder; the original artwork is not embedded.
+```markdown
+# My concept
+
+A brief description for the listing.
+
+## Explanation
+
+Write the explanation and cite its sources.
+```
+
+The next build adds it to the cylinder and generated dimension listing. Optional front matter supports `title`, `description`, numeric `order`, and `draft: true` to omit it from navigation. Titles otherwise come from the H1; descriptions from the first ordinary paragraph. READMEs publish as `readme-note.html` to avoid index collisions.
+
+The five cylinder rows describe **note coverage**: explanation, mathematics, worked example, sources, and self-check. Coverage is inferred from Markdown, with all sections marked planned for placeholder notes. Override it and provide exact section destinations when needed:
+
+```yaml
+---
+coverage:
+  overview: true
+  math: true
+  example: false
+  sources: true
+  check: false
+section_anchors:
+  overview: explanation
+  math: objective
+  sources: references
+---
+```
+
+Coverage indicates written sections, not research quality or personal understanding. Without an explicit anchor, the link opens the note at its beginning.
+
+## Add a dimension
+
+Create `docs/dimensions/<slug>/index.md` and its concept documents. Register it in `docs/index.md` with an H2 whose ID matches the folder:
+
+```markdown
+## Communication {#communication}
+
+How communication affects FL.
+
+[Explore all](dimensions/communication/index.md)
+```
+
+It inherits the cylinder controls. Concept lists inside dimension indexes are generated; do not maintain duplicate links.
+
+## Add papers
+
+Add a record to `data/papers.yml`, using an existing record as the schema. Include a stable ID, title, authors, publication/version status, source/PDF URLs, topics, reading prompt, collection date, and BibTeX. Optional `local_file` is a filename relative to repository-root `ref-papers/`; the build checks whether that copy exists. Optional `note` links to a Markdown note.
+
+The paper bank provides search, type filtering, citations, and source links. “Collected” does not mean read or understood. PDFs stay in the repository library and are not automatically republished. Record unavailable downloads honestly.
+
+## Mathematics and interactions
+
+Use `$w_t$` inline or a separate `$$` equation block. Arithmatex preserves the notation; locally vendored MathJax 3.2.2 renders SVG equations, including offline. Its license and origin are in `docs/assets/vendor/mathjax/`.
+
+`hooks.py` discovers content and loads paper records. `theme/main.html` renders the shared shell. `docs/assets/atlas.js` projects an original SVG barrel with drag/arrow rotation, selectors, and an expanded dialog. `site.js` handles the learning-rate illustration and paper filtering. `atlas.css` supplies the responsive light theme and Arial typography.
+
+Visual reference: [Northstar-RF Home taxonomy](https://northstar-rf.pages.dev/). The implementation is independent; cells show note coverage rather than method ratings. Reduced motion and keyboard/dropdown navigation are supported.
+
+## Publish
+
+Live: https://syudu41.github.io/FL-survey/
+
+Push website changes to `main`; `.github/workflows/pages.yml` builds and deploys GitHub Pages. Committing alone does not publish. Check the Actions result before assuming a release is live.
+
+Generated `website/site/` is ignored by Git. The root `index.html` redirects to that build for local use; Pages serves the build directly. Architecture, current scope, and pending work are recorded in [website-status.md](../website-status.md).
