@@ -52,3 +52,16 @@ if (search) {
     }
   }));
 }
+
+// Chapter navigation seeks without forcing playback or enabling autoplay.
+const workflowFilm = document.querySelector('#fedavg-film');
+if (workflowFilm) {
+  document.querySelectorAll('[data-video-seek]').forEach(button => {
+    button.addEventListener('click', () => {
+      const seek = () => { workflowFilm.currentTime = Number(button.dataset.videoSeek); };
+      if (workflowFilm.readyState >= 1) seek();
+      else { workflowFilm.addEventListener('loadedmetadata', seek, { once: true });workflowFilm.load(); }
+      workflowFilm.focus({ preventScroll: true });
+    });
+  });
+}

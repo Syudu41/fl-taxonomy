@@ -1,0 +1,65 @@
+{
+  "renderer": "Manim Community 0.19.0",
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": "30/1",
+  "duration_seconds": 77.2,
+  "has_audio": false,
+  "source": "website/visuals/fedavg_lifecycle.py",
+  "algorithm_source": "https://proceedings.mlr.press/v54/mcmahan17a.html",
+  "example": "Invented full-participation arithmetic, not experimental results",
+  "captions": [
+    {
+      "start": 0.6,
+      "text": "Two honest clients participate. Their raw examples remain local.",
+      "end": 7.3
+    },
+    {
+      "start": 7.3,
+      "text": "The server sends w = 1 to both clients. Model parameters travel; training data do not.",
+      "end": 15.0
+    },
+    {
+      "start": 15.0,
+      "text": "Each client takes two full-batch gradient steps with learning rate 0.1.",
+      "end": 21.1
+    },
+    {
+      "start": 21.1,
+      "text": "Client A: gradient \u22122 gives 1.20. Client B: gradient \u22128 gives 1.80.",
+      "end": 27.8
+    },
+    {
+      "start": 27.8,
+      "text": "The next gradients are evaluated at different local parameters: 1.20 and 1.80.",
+      "end": 36.5
+    },
+    {
+      "start": 36.5,
+      "text": "Averaging B\u2019s three identical losses leaves the mean loss (2w \u2212 4)\u00b2.",
+      "end": 41.1
+    },
+    {
+      "start": 41.1,
+      "text": "Clients return 1.36 and 1.96. The server has not seen their raw examples.",
+      "end": 49.8
+    },
+    {
+      "start": 49.8,
+      "text": "Full participation: weights are 1/4 and 3/4. They reflect sample counts, not trust.",
+      "end": 64.0
+    },
+    {
+      "start": 64.0,
+      "text": "The new global model is 1.81. Broadcast it again and repeat until the stopping rule is met.",
+      "end": 72.2
+    },
+    {
+      "start": 72.2,
+      "text": "Keeping data local is not a privacy guarantee. This example assumes honest, synchronous clients.",
+      "end": 77.2
+    }
+  ]
+}

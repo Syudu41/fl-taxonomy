@@ -4,7 +4,7 @@ A website for a comprehensive FL survey, supporting Sudarshan Balaji’s PhD res
 
 **[Website](https://syudu41.github.io/flsurvey/)** · [Website guide](website/README.md) · [Session handoff](website-status.md) · [Reference papers](ref-papers/README.md)
 
-The prototype includes a rotating concept cylinder, a learning guide, a worked FedAvg example with equations, and a searchable paper bank. Other concept notes remain placeholders. Paper comparisons and a training simulator are pending.
+The prototype includes an interactive concept cylinder, 11 sourced aggregation/optimization notes with worked examples, a learning guide, a 12-paper bank, and a captioned Manim video of one FedAvg round. Other dimensions remain a reading plan. Paper comparisons and a training simulator are pending.
 
 ## Content workflow
 
@@ -13,6 +13,7 @@ The prototype includes a rotating concept cylinder, a learning guide, a worked F
 - **Update/add a concept:** edit or create Markdown under `website/docs/dimensions/<dimension>/`. Listings and the cylinder update on rebuild.
 - **Add a dimension:** create its folder and `index.md`, then register it in `website/docs/index.md`.
 - **Add a paper:** add a record to `website/data/papers.yml`; keep reading copies in `ref-papers/`.
+- **Create a visual:** use the project-local [minim-agent skill](.agents/skills/minim-agent/SKILL.md); [rendering guide](website/visuals/README.md).
 
 ## Preview and publish
 

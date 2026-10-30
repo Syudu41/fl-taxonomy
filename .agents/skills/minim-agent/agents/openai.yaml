@@ -1,0 +1,4 @@
+interface:
+  display_name: "Minim Agent"
+  short_description: "Render precise Manim visuals for the FL survey"
+  default_prompt: "Use $minim-agent to illustrate this FL concept with a sourced, mathematically checked Manim video or image."

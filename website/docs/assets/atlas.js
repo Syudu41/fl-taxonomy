@@ -54,10 +54,32 @@ class TaxonomyBarrel {
     this.step = TAU / this.total;
     this.currentGroup = groups[0];
     root.className = 'barrel';
-    root.innerHTML = `<header class="barrel-toolbar"><div><span class="eyebrow">FACING YOU</span><h2 class="barrel-title"></h2></div><div class="barrel-controls"><button class="turn-previous" aria-label="Previous concept">←</button><button class="turn-next" aria-label="Next concept">→</button>${expanded ? '' : '<button class="expand-map">Expand cylinder ↗</button>'}</div></header><div class="barrel-grid"><div class="barrel-scroll"></div><aside class="barrel-inspector"><div class="inspector-readout" aria-live="polite"></div><label>Concept<select class="concept-picker"></select></label><label>Reading section<select class="section-picker"></select></label><a class="read-note" href="#"></a><a class="all-notes" href="#">Explore all in this dimension ↗</a><div class="barrel-legend"><strong>Reading the map</strong><span><i class="written-swatch"></i> Written note section</span><span><i class="planned-swatch"></i> Planned section</span><p>Content coverage, not method ratings or proof of understanding.</p></div></aside></div><p class="barrel-hint">Drag to rotate · ← → concept · ↑ ↓ section · Enter to inspect</p>`;
+    root.innerHTML = `<header class="barrel-toolbar"><div><span class="eyebrow">FACING YOU</span><h2 class="barrel-title"></h2></div><div class="barrel-controls"><button class="turn-previous" aria-label="Previous concept">←</button><button class="turn-next" aria-label="Next concept">→</button>${expanded ? '' : '<button class="expand-map">Expand cylinder ↗</button>'}</div></header><div class="barrel-grid"><div class="barrel-scroll"></div><aside class="barrel-inspector"><div class="inspector-readout" aria-live="polite"></div><label>Concept<select class="concept-picker"></select></label><label>Reading section<select class="section-picker"></select></label><a class="read-note" href="#"></a><a class="all-notes" href="#">Explore all in this dimension ↗</a><div class="barrel-legend"><strong>Reading the map</strong><span><i class="written-swatch"></i> Written note section</span><span><i class="planned-swatch"></i> Planned section</span><p>Content coverage, not method ratings or proof of understanding.</p></div></aside></div><p class="barrel-hint">Swipe left/right or drag to rotate · Shift + wheel · Arrow keys to explore</p>`;
     this.scroll = root.querySelector('.barrel-scroll');
     this.diagram = svg('svg', { class: 'barrel-diagram', tabindex: '0', role: 'group', 'aria-label': 'Rotating FL concept cylinder. Left and right choose a concept, up and down choose a reading section, Enter inspects. Dropdown controls are also available.' });
     this.scroll.append(this.diagram);
+    this.wheelTimer = 0;
+    this.scroll.addEventListener('wheel', event => {
+      // Horizontal trackpad swipes and Shift+wheel rotate from anywhere on the
+      // diagram. Keep ordinary vertical scrolling and pinch-to-zoom native.
+      if (!this.active || !concepts.length || event.ctrlKey || this.drag) return;
+      const horizontal = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+      if (!horizontal && !event.shiftKey) return;
+      const delta = horizontal ? event.deltaX : event.deltaY;
+      if (!delta) return;
+      event.preventDefault();
+      const scale = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? this.scroll.clientWidth : 1;
+      this.stop();
+      this.rotation -= Math.max(-240, Math.min(240, delta * scale)) / Math.max(100, this.geometry.radius);
+      this.target = this.rotation;
+      this.render();
+      clearTimeout(this.wheelTimer);
+      this.wheelTimer = setTimeout(() => {
+        if (!this.active) return;
+        const slot = ((Math.round(-this.rotation / this.step) % this.total) + this.total) % this.total;
+        this.choose(Math.min(slot, concepts.length - 1), this.row, true);
+      }, 140);
+    }, { passive: false });
     this.outlineBack = svg('g', { class: 'barrel-outline-back', 'aria-hidden': 'true' });
     this.diagram.append(this.outlineBack);
     this.cells = [];
@@ -108,7 +130,7 @@ class TaxonomyBarrel {
     });
     this.diagram.addEventListener('pointerdown', event => {
       if (event.button !== 0 || !this.active) return;
-      this.stop();
+      this.stop();clearTimeout(this.wheelTimer);
       const cell = event.target.closest('[data-concept]');
       this.drag = { id: event.pointerId, x: event.clientX, y: event.clientY, rotation: this.rotation, moved: false, cell };
       this.diagram.setPointerCapture(event.pointerId);
@@ -211,13 +233,13 @@ class TaxonomyBarrel {
       this.onGroup?.(dimension);return;
     }
     const first = concepts.indexOf(dimension.concepts[0]);
-    this.choose(first, 0, false);
-    const center = first + (dimension.concepts.length - 1) / 2;
-    this.target = this.rotation + wrapAngle(-center * this.step - this.rotation);
-    this.animate();
+    // Center the inspected concept even when a dimension fills over half the
+    // barrel; a group-centered view could hide its selected first concept.
+    this.choose(first, 0, true);
   }
   choose(index, row, reveal) {
     if (!concepts[index]) return;
+    clearTimeout(this.wheelTimer);
     this.selected = index;this.row = row;this.currentGroup = concepts[index].group;
     if (reveal) this.target = this.rotation + wrapAngle(-index * this.step - this.rotation);
     this.refresh();this.render();
@@ -246,7 +268,7 @@ class TaxonomyBarrel {
     return concept.href + (anchor ? '#' + anchor : '');
   }
   move(direction) { if (concepts.length) this.choose((this.selected + direction + concepts.length) % concepts.length, this.row, true); }
-  setActive(active) { this.active = active;if (!active) this.stop();else this.animate(); }
+  setActive(active) { this.active = active;if (!active) { clearTimeout(this.wheelTimer);this.stop(); } else this.animate(); }
   stop() { cancelAnimationFrame(this.frame);this.frame = 0; }
   animate() {
     if (!this.active || this.frame || this.drag) return;

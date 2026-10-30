@@ -19,7 +19,7 @@ section_anchors:
 
 # FedAvg
 
-**Reading state: introductory note.** Begin with the [learning foundations](../../foundations.md) if gradients or local training are unfamiliar. This page separates the algorithm described in the paper, our derivation, and our hand calculation. It is not a benchmark reproduction.
+**Reading state: sourced algorithm note with a worked round.** Begin with the [learning foundations](../../foundations.md) if gradients or local training are unfamiliar. This page separates the algorithm described in the paper, our derivation, and our hand calculation. It is not a benchmark reproduction.
 
 ## Intuition
 
@@ -71,7 +71,48 @@ $$
 | $\eta$ | Local learning rate |
 | $b$ | Local minibatch; its loss is averaged in this note |
 
-**Source:** Algorithm 1, PDF page 5. This introductory treatment assumes **full participation**. Client sampling, dropouts, and how weights are normalized under those protocols need a separate, explicit treatment.
+**Source:** Algorithm 1, PDF page 5. This introductory treatment assumes **full participation**. The participation section below makes a separate normalized-cohort convention explicit for future implementations.
+
+## Executing a round
+
+```text
+server initializes compatible model parameters w
+repeat communication rounds:
+    select a nonempty cohort S and broadcast the same w to every member
+    for each client k in S, in parallel:
+        local_w = copy(w)
+        repeat E local epochs:
+            for each local minibatch b:
+                local_w -= client_learning_rate * gradient(mean_loss(local_w, b))
+        return local_w and the declared local sample count
+    w = weighted_mean(returned_models, declared_weights)
+```
+
+An **epoch** is a local pass through data, not one communication round or one minibatch. The original method specifies client fraction $C$, local epochs $E$, batch size $B$, and learning rate $\eta$. Parameter averaging requires the same parameter layout; averaging losses or predictions would be different operations. [McMahan et al., Algorithm 1](https://proceedings.mlr.press/v54/mcmahan17a/mcmahan17a.pdf#page=5).
+
+### Participation and normalization
+
+The worked example below uses all clients, so the denominator is unambiguous. For an implementation with selected cohort $S_t$, one explicitly defined **normalized cohort convention** is:
+
+$$
+p_{k,t}=\frac{n_k}{\sum_{j\in S_t}n_j},\qquad
+w_{t+1}=\sum_{k\in S_t}p_{k,t}w_{t+1}^{(k)}.
+$$
+
+Its weights sum to one over the clients whose models were actually received. The printed original Algorithm 1 instead shows $n_k/n$ inside the selected-client sum, with $n$ introduced for the full objective. Do not silently equate these expressions under partial participation. Record sampling, denominator, dropout policy, and any treatment of nonparticipants. Our FedAvgM/FedOpt examples declare normalized cohort weighting; SCAFFOLD follows its own uniform-client convention.
+
+Neither selecting clients nor renormalizing automatically makes an update an unbiased estimate of a full-population objective. If clients have unequal inclusion probabilities, the sampling and weighting need joint analysis. This note supplies a reproducible convention, not a sampling theorem.
+
+### Parameters and model changes
+
+With normalized weights, define $\Delta_k=w_{t+1}^{(k)}-w_t$. Then:
+
+$$
+w_t+\sum_{k\in S_t}p_{k,t}\Delta_k
+=\sum_{k\in S_t}p_{k,t}w_{t+1}^{(k)}.
+$$
+
+This identity explains why transmitting model changes can implement the same average. All clients must refer to the same starting model, and the signs and coefficients must match. These algebraic equivalences are our explicit derivations.
 
 ## One complete round
 
@@ -123,4 +164,4 @@ Algorithm 1 specifies client fraction $C$, local epochs $E$, minibatch size $B$,
 
 Read Section 1 for the setting; Section 2 for the objective; Algorithm 1 for execution; then Section 3 before repeating performance claims. PDF page numbers count from the first page of the file. A local reading copy is in `ref-papers/mcmahan-2017-fedavg.pdf`.
 
-Next research tasks: make a claim/section record, reconstruct pseudocode independently, decide a participation convention, and design a small reproducible experiment. Comparisons and a secure-FL proposal remain pending until the survey supports them. Open the [paper bank](../../papers.md) for the current reading collection.
+Continue with [FedSGD](fedsgd.md), [FedAvgM](fedavgm.md), [FedProx](fedprox.md), [SCAFFOLD](scaffold.md), or [adaptive server optimization](fedopt.md). Next research tasks: make a claim/section record and design a small reproducible experiment with a declared participation convention. Comparisons and a secure-FL proposal remain pending until the survey supports them. Open the [paper bank](../../papers.md) for the current reading collection.

@@ -1,6 +1,6 @@
 # Federated Learning survey website
 
-Static MkDocs source bank for a comprehensive FL survey. The prototype has a rotating SVG taxonomy cylinder, introductory learning guide, worked FedAvg note, and searchable paper bank. Other concept notes remain placeholders.
+Static MkDocs source bank for a comprehensive FL survey. The prototype has a rotating SVG taxonomy cylinder, introductory learning guide, 11 sourced aggregation/optimization notes, a 12-record paper bank, and a captioned FedAvg workflow video. Other dimensions still contain planned notes.
 
 ## Preview and build
 
@@ -77,9 +77,17 @@ The paper bank provides search, type filtering, citations, and source links. “
 
 Use `$w_t$` inline or a separate `$$` equation block. Arithmatex preserves the notation; locally vendored MathJax 3.2.2 renders SVG equations, including offline. Its license and origin are in `docs/assets/vendor/mathjax/`.
 
-`hooks.py` discovers content and loads paper records. `theme/main.html` renders the shared shell. `docs/assets/atlas.js` projects an original SVG barrel with drag/arrow rotation, selectors, and an expanded dialog. `site.js` handles the learning-rate illustration and paper filtering. `atlas.css` supplies the responsive light theme and Arial typography.
+`hooks.py` discovers content and loads paper records. `theme/main.html` renders the shared shell. `docs/assets/atlas.js` projects an original SVG barrel with horizontal trackpad/Shift-wheel/drag/arrow rotation, selectors, and an expanded dialog. Ordinary vertical scrolling and pinch zoom remain native. `site.js` handles the learning-rate illustration, paper filtering, and video chapter navigation. `atlas.css` supplies the responsive light theme and Arial typography.
 
 Visual reference: [Northstar-RF Home taxonomy](https://northstar-rf.pages.dev/). The implementation is independent; cells show note coverage rather than method ratings. Reduced motion and keyboard/dropdown navigation are supported.
+
+## Manim illustrations
+
+The project-local [minim-agent skill](../.agents/skills/minim-agent/SKILL.md) creates original mathematical workflow and neural-network visuals. Editable scene source and isolated rendering dependencies are in `visuals/`; the [rendering guide](visuals/README.md) contains the tested command.
+
+Final artifacts go in `docs/assets/manim-outputs/`: MP4, poster, WebVTT, transcript, and metadata. The FL introduction embeds the 1080p silent FedAvg video with native controls and chapter buttons. Captions are baked into the video; the optional caption track is not enabled by default to avoid duplicates. Re-render before building when scene source changes. GitHub Pages serves the final assets and does not install or run Manim.
+
+The workflow illustrates one honest, synchronous, full-participation round. It is a teaching example, not an experiment or privacy guarantee. Frame inspection, arithmetic checks, and browser playback validation accompany production rendering.
 
 ## Publish
 

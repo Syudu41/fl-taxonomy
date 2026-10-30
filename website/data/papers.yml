@@ -8,10 +8,13 @@
   url: https://proceedings.mlr.press/v54/mcmahan17a.html
   pdf: https://proceedings.mlr.press/v54/mcmahan17a/mcmahan17a.pdf
   local_file: mcmahan-2017-fedavg.pdf
-  topics: [Aggregation, Optimization, FedAvg]
+  topics:
+  - Aggregation
+  - Optimization
+  - FedAvg
   read_next: Section 2 for the objective, Algorithm 1 for the training round, then Section 3 for experimental conditions.
   note: dimensions/aggregation/fedavg.html
-  note_label: Introductory note available
+  note_label: Sourced method note
   collected: '2026-10-22'
   bibtex: |
     @inproceedings{mcmahan2017fedavg,
@@ -31,7 +34,10 @@
   url: https://arxiv.org/abs/1912.04977v3
   pdf: https://arxiv.org/pdf/1912.04977v3
   local_file: kairouz-2021-fl-open-problems-arxiv-v3.pdf
-  topics: [FL overview, Privacy, Open problems]
+  topics:
+  - FL overview
+  - Privacy
+  - Open problems
   read_next: Start with the introduction to map the setting and vocabulary. Follow its references to original studies.
   collected: '2026-10-22'
   bibtex: |
@@ -51,8 +57,12 @@
   publication: Online December 2025; 2026 issue
   url: https://doi.org/10.32604/cmc.2025.073519
   pdf: https://file.techscience.com/uploads/attached/file/20251211/20251211162907_74245.pdf
-  topics: [Architecture, Synchronization, Security]
-  read_next: Sections 3 and 5 for its taxonomy and fundamentals. Record which categories overlap before adopting the taxonomy.
+  topics:
+  - Architecture
+  - Synchronization
+  - Security
+  read_next: Sections 3 and 5 for its taxonomy and fundamentals. Record which categories overlap before adopting
+    the taxonomy.
   collected: '2026-10-22'
   availability: Source recorded; PDF download previously returned HTTP 403.
   bibtex: |
@@ -63,7 +73,8 @@
       year={2026}, doi={10.32604/cmc.2025.073519}
     }
 - id: P004
-  title: 'The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and Policy Landscape'
+  title: 'The Federation Strikes Back: A Survey of Federated Learning Privacy Attacks, Defenses, Applications, and
+    Policy Landscape'
   authors: Joshua C. Zhao et al.
   year: 2025
   kind: Survey
@@ -72,8 +83,12 @@
   url: https://arxiv.org/abs/2405.03636v3
   pdf: https://arxiv.org/pdf/2405.03636v3
   local_file: zhao-2025-federation-strikes-back-arxiv-v3.pdf
-  topics: [Privacy, Attacks, Defenses]
-  read_next: Identify the attacker, observed information, assumptions, and claimed privacy failure before reading a defense.
+  topics:
+  - Privacy
+  - Attacks
+  - Defenses
+  read_next: Identify the attacker, observed information, assumptions, and claimed privacy failure before reading
+    a defense.
   collected: '2026-10-22'
   bibtex: |
     @misc{zhao2025federation,
@@ -84,7 +99,8 @@
       url={https://arxiv.org/abs/2405.03636v3}
     }
 - id: P005
-  title: 'On the Security and Privacy of Federated Learning: A Survey with Attacks, Defenses, Frameworks, Applications, and Future Directions'
+  title: 'On the Security and Privacy of Federated Learning: A Survey with Attacks, Defenses, Frameworks, Applications,
+    and Future Directions'
   authors: Daniel M. Jimenez-Gutierrez et al.
   year: 2025
   kind: Survey
@@ -93,8 +109,12 @@
   url: https://arxiv.org/abs/2508.13730v1
   pdf: https://arxiv.org/pdf/2508.13730v1
   local_file: jimenez-gutierrez-2025-fl-security-privacy-arxiv-v1.pdf
-  topics: [Security, Privacy, Threat models]
-  read_next: Separate security-enhancing techniques from privacy-preserving techniques; trace specific claims to original papers.
+  topics:
+  - Security
+  - Privacy
+  - Threat models
+  read_next: Separate security-enhancing techniques from privacy-preserving techniques; trace specific claims to
+    original papers.
   collected: '2026-10-22'
   bibtex: |
     @misc{jimenez2025security,
@@ -102,4 +122,181 @@
       author={Jimenez-Gutierrez, Daniel M. and others}, year={2025},
       eprint={2508.13730}, archivePrefix={arXiv}, version={1},
       url={https://arxiv.org/abs/2508.13730v1}
+    }
+- id: P006
+  title: Federated Optimization in Heterogeneous Networks
+  authors: Tian Li, Anit Kumar Sahu, Manzil Zaheer, Maziar Sanjabi, Ameet Talwalkar, Virginia Smith
+  year: 2020
+  kind: Original paper
+  venue: MLSys 2, 429–450
+  publication: Conference paper; proceedings PDF
+  url: https://proceedings.mlsys.org/paper_files/paper/2020/hash/1f5fe83998a09396ebe6477d9475ba0c-Abstract.html
+  pdf: https://proceedings.mlsys.org/paper/2020/file/1f5fe83998a09396ebe6477d9475ba0c-Paper.pdf
+  local_file: li-2020-fedprox-mlsys.pdf
+  topics:
+  - FedProx
+  - Aggregation
+  - Heterogeneity
+  read_next: Section 3, Algorithm 2 for the local proximal objective; Section 4 for analysis assumptions.
+  note: dimensions/aggregation/fedprox.html
+  note_label: Sourced method note
+  collected: '2026-10-30'
+  bibtex: |
+    @inproceedings{li2020fedprox,
+      title={Federated Optimization in Heterogeneous Networks},
+      author={Li, Tian and Sahu, Anit Kumar and Zaheer, Manzil and Sanjabi, Maziar and Talwalkar, Ameet and Smith, Virginia},
+      booktitle={Proceedings of Machine Learning and Systems}, volume={2}, pages={429--450}, year={2020}
+    }
+- id: P007
+  title: 'SCAFFOLD: Stochastic Controlled Averaging for Federated Learning'
+  authors: Sai Praneeth Karimireddy, Satyen Kale, Mehryar Mohri, Sashank J. Reddi, Sebastian U. Stich, Ananda Theertha
+    Suresh
+  year: 2020
+  kind: Original paper
+  venue: ICML · PMLR 119, 5132–5143
+  publication: Conference paper
+  url: https://proceedings.mlr.press/v119/karimireddy20a.html
+  pdf: https://proceedings.mlr.press/v119/karimireddy20a/karimireddy20a.pdf
+  local_file: karimireddy-2020-scaffold.pdf
+  topics:
+  - SCAFFOLD
+  - Control variates
+  - Client drift
+  read_next: 'Section 4 and Algorithm 1: distinguish model and control updates, including cohort versus population
+    denominators.'
+  note: dimensions/aggregation/scaffold.html
+  note_label: Sourced method note
+  collected: '2026-10-30'
+  bibtex: |
+    @inproceedings{karimireddy2020scaffold,
+      title={SCAFFOLD: Stochastic Controlled Averaging for Federated Learning},
+      author={Karimireddy, Sai Praneeth and Kale, Satyen and Mohri, Mehryar and Reddi, Sashank and Stich, Sebastian and Suresh, Ananda Theertha},
+      booktitle={Proceedings of the 37th International Conference on Machine Learning}, volume={119}, pages={5132--5143}, year={2020}, publisher={PMLR}
+    }
+- id: P008
+  title: Adaptive Federated Optimization
+  authors: Sashank J. Reddi, Zachary Charles, Manzil Zaheer, Zachary Garrett, Keith Rush, Jakub Konečný, Sanjiv
+    Kumar, H. Brendan McMahan
+  year: 2021
+  kind: Original paper
+  venue: ICLR 2021
+  publication: Conference paper; author-hosted reading copy
+  url: https://research.google/pubs/adaptive-federated-optimization/
+  pdf: https://sanjivk.com/adaptive_federated_optimization_ICLR2021.pdf
+  local_file: reddi-2021-adaptive-federated-optimization.pdf
+  topics:
+  - FedOpt
+  - FedAdam
+  - FedAdagrad
+  - FedYogi
+  read_next: Section 3, Algorithms 1–2; inspect the reused displacement symbol and accumulator convention. Appendix
+    B provides implementation details.
+  note: dimensions/aggregation/fedopt.html
+  note_label: Sourced method note
+  collected: '2026-10-30'
+  bibtex: |
+    @inproceedings{reddi2021adaptive,
+      title={Adaptive Federated Optimization},
+      author={Reddi, Sashank J. and Charles, Zachary and Zaheer, Manzil and Garrett, Zachary and Rush, Keith and Konecny, Jakub and Kumar, Sanjiv and McMahan, H. Brendan},
+      booktitle={International Conference on Learning Representations}, year={2021},
+      url={https://research.google/pubs/adaptive-federated-optimization/}
+    }
+- id: P009
+  title: 'Byzantine-Robust Distributed Learning: Towards Optimal Statistical Rates'
+  authors: Dong Yin, Yudong Chen, Kannan Ramchandran, Peter Bartlett
+  year: 2018
+  kind: Original paper
+  venue: ICML · PMLR 80, 5650–5659
+  publication: Conference paper
+  url: https://proceedings.mlr.press/v80/yin18a.html
+  pdf: https://proceedings.mlr.press/v80/yin18a/yin18a.pdf
+  local_file: yin-2018-byzantine-robust.pdf
+  topics:
+  - Byzantine robustness
+  - Coordinate median
+  - Trimmed mean
+  read_next: Section 3 for the two operators; Sections 4–5 for the statistical model and rates. Distinguish gradients
+    from multi-step FL deltas.
+  note: dimensions/aggregation/coordinate-wise-median.html
+  note_label: Sourced method note
+  collected: '2026-10-30'
+  bibtex: |
+    @inproceedings{yin2018byzantine,
+      title={Byzantine-Robust Distributed Learning: Towards Optimal Statistical Rates},
+      author={Yin, Dong and Chen, Yudong and Ramchandran, Kannan and Bartlett, Peter},
+      booktitle={Proceedings of the 35th International Conference on Machine Learning}, volume={80}, pages={5650--5659}, year={2018}, publisher={PMLR}
+    }
+- id: P010
+  title: 'Machine Learning with Adversaries: Byzantine Tolerant Gradient Descent'
+  authors: Peva Blanchard, El Mahdi El Mhamdi, Rachid Guerraoui, Julien Stainer
+  year: 2017
+  kind: Original paper
+  venue: NeurIPS 30 (NIPS 2017)
+  publication: Conference paper
+  url: https://proceedings.neurips.cc/paper_files/paper/2017/hash/f4b9ec30ad9f68f89b29639786cb62ef-Abstract.html
+  pdf: https://proceedings.neurips.cc/paper/2017/file/f4b9ec30ad9f68f89b29639786cb62ef-Paper.pdf
+  local_file: blanchard-2017-krum.pdf
+  topics:
+  - Krum
+  - Byzantine robustness
+  - Gradient aggregation
+  read_next: 'Sections 3–4: resilience definition, nearest-neighbor score, and noise/count assumptions.'
+  note: dimensions/aggregation/krum.html
+  note_label: Sourced method note
+  collected: '2026-10-30'
+  bibtex: |
+    @inproceedings{blanchard2017krum,
+      title={Machine Learning with Adversaries: Byzantine Tolerant Gradient Descent},
+      author={Blanchard, Peva and El Mhamdi, El Mahdi and Guerraoui, Rachid and Stainer, Julien},
+      booktitle={Advances in Neural Information Processing Systems}, volume={30}, year={2017}
+    }
+- id: P011
+  title: Robust Aggregation for Federated Learning
+  authors: Krishna Pillutla, Sham M. Kakade, Zaid Harchaoui
+  year: 2022
+  kind: Original paper
+  venue: IEEE Transactions on Signal Processing · 70, 1142–1154
+  publication: Journal paper; stored author manuscript is arXiv v2
+  url: https://arxiv.org/abs/1912.13445v2
+  pdf: https://arxiv.org/pdf/1912.13445v2
+  local_file: pillutla-2022-robust-aggregation-arxiv-v2.pdf
+  topics:
+  - RFA
+  - Geometric median
+  - Secure average
+  read_next: Sections 2–3 for the geometric-median oracle and RFA; Appendix C for smoothed Weiszfeld convergence.
+  note: dimensions/aggregation/geometric-median.html
+  note_label: Sourced method note
+  collected: '2026-10-30'
+  bibtex: |
+    @article{pillutla2022robust,
+      title={Robust Aggregation for Federated Learning},
+      author={Pillutla, Krishna and Kakade, Sham M. and Harchaoui, Zaid},
+      journal={IEEE Transactions on Signal Processing}, volume={70}, pages={1142--1154}, year={2022},
+      doi={10.1109/TSP.2022.3153135}
+    }
+- id: P012
+  title: Measuring the Effects of Non-Identical Data Distribution for Federated Visual Classification
+  authors: Tzu-Ming Harry Hsu, Hang Qi, Matthew Brown
+  year: 2019
+  kind: Original paper
+  venue: arXiv:1909.06335v1
+  publication: Author preprint, September 2019
+  url: https://arxiv.org/abs/1909.06335v1
+  pdf: https://arxiv.org/pdf/1909.06335v1
+  local_file: hsu-2019-fedavgm-arxiv-v1.pdf
+  topics:
+  - FedAvgM
+  - Server momentum
+  - Non-IID
+  read_next: Section 4.2 for server momentum; distinguish the displayed recurrence from Nesterov momentum used in
+    experiments.
+  note: dimensions/aggregation/fedavgm.html
+  note_label: Sourced method note
+  collected: '2026-10-30'
+  bibtex: |
+    @misc{hsu2019fedavgm,
+      title={Measuring the Effects of Non-Identical Data Distribution for Federated Visual Classification},
+      author={Hsu, Tzu-Ming Harry and Qi, Hang and Brown, Matthew},
+      year={2019}, eprint={1909.06335}, archivePrefix={arXiv}, version={1}
     }

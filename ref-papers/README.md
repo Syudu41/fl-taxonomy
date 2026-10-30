@@ -71,3 +71,77 @@ The newer entries were selected by checking their abstracts and publication/vers
 For each claim, record: claim ID, wording, source ID, section/page/algorithm, applicable assumptions, and whether it is a paper result, our interpretation, or our own experiment. Experiments should additionally record code version, configuration, data partition, random seeds, and metric definitions.
 
 Added: 2026-10-22. Check the folder for actual PDF availability; source links remain the canonical records.
+
+## Aggregation primary sources added 2026-10-30
+
+Seven additional PDFs were downloaded from proceedings or author-hosted sources. These support the method notes; collection and source checks do not establish completed critical review.
+
+### P006 — Federated Optimization in Heterogeneous Networks
+
+- Authors: Tian Li, Anit Kumar Sahu, Manzil Zaheer, Maziar Sanjabi, Ameet Talwalkar, Virginia Smith
+- Publication: MLSys 2, 429–450; Conference paper; proceedings PDF.
+- Source: https://proceedings.mlsys.org/paper_files/paper/2020/hash/1f5fe83998a09396ebe6477d9475ba0c-Abstract.html
+- PDF source: https://proceedings.mlsys.org/paper/2020/file/1f5fe83998a09396ebe6477d9475ba0c-Paper.pdf
+- Reading copy: `li-2020-fedprox-mlsys.pdf`
+- Reading anchor: Section 3, Algorithm 2 for the local proximal objective; Section 4 for analysis assumptions.
+- Website note: [method note](../website/docs/dimensions/aggregation/fedprox.md)
+
+### P007 — SCAFFOLD: Stochastic Controlled Averaging for Federated Learning
+
+- Authors: Sai Praneeth Karimireddy, Satyen Kale, Mehryar Mohri, Sashank J. Reddi, Sebastian U. Stich, Ananda Theertha Suresh
+- Publication: ICML · PMLR 119, 5132–5143; Conference paper.
+- Source: https://proceedings.mlr.press/v119/karimireddy20a.html
+- PDF source: https://proceedings.mlr.press/v119/karimireddy20a/karimireddy20a.pdf
+- Reading copy: `karimireddy-2020-scaffold.pdf`
+- Reading anchor: Section 4 and Algorithm 1: distinguish model and control updates, including cohort versus population denominators.
+- Website note: [method note](../website/docs/dimensions/aggregation/scaffold.md)
+
+### P008 — Adaptive Federated Optimization
+
+- Authors: Sashank J. Reddi, Zachary Charles, Manzil Zaheer, Zachary Garrett, Keith Rush, Jakub Konečný, Sanjiv Kumar, H. Brendan McMahan
+- Publication: ICLR 2021; Conference paper; author-hosted reading copy.
+- Source: https://research.google/pubs/adaptive-federated-optimization/
+- PDF source: https://sanjivk.com/adaptive_federated_optimization_ICLR2021.pdf
+- Reading copy: `reddi-2021-adaptive-federated-optimization.pdf`
+- Reading anchor: Section 3, Algorithms 1–2; inspect the reused displacement symbol and accumulator convention. Appendix B provides implementation details.
+- Website note: [method note](../website/docs/dimensions/aggregation/fedopt.md)
+
+### P009 — Byzantine-Robust Distributed Learning: Towards Optimal Statistical Rates
+
+- Authors: Dong Yin, Yudong Chen, Kannan Ramchandran, Peter Bartlett
+- Publication: ICML · PMLR 80, 5650–5659; Conference paper.
+- Source: https://proceedings.mlr.press/v80/yin18a.html
+- PDF source: https://proceedings.mlr.press/v80/yin18a/yin18a.pdf
+- Reading copy: `yin-2018-byzantine-robust.pdf`
+- Reading anchor: Section 3 for the two operators; Sections 4–5 for the statistical model and rates. Distinguish gradients from multi-step FL deltas.
+- Website note: [method note](../website/docs/dimensions/aggregation/coordinate-wise-median.md)
+
+### P010 — Machine Learning with Adversaries: Byzantine Tolerant Gradient Descent
+
+- Authors: Peva Blanchard, El Mahdi El Mhamdi, Rachid Guerraoui, Julien Stainer
+- Publication: NeurIPS 30 (NIPS 2017); Conference paper.
+- Source: https://proceedings.neurips.cc/paper_files/paper/2017/hash/f4b9ec30ad9f68f89b29639786cb62ef-Abstract.html
+- PDF source: https://proceedings.neurips.cc/paper/2017/file/f4b9ec30ad9f68f89b29639786cb62ef-Paper.pdf
+- Reading copy: `blanchard-2017-krum.pdf`
+- Reading anchor: Sections 3–4: resilience definition, nearest-neighbor score, and noise/count assumptions.
+- Website note: [method note](../website/docs/dimensions/aggregation/krum.md)
+
+### P011 — Robust Aggregation for Federated Learning
+
+- Authors: Krishna Pillutla, Sham M. Kakade, Zaid Harchaoui
+- Publication: IEEE Transactions on Signal Processing · 70, 1142–1154; Journal paper; stored author manuscript is arXiv v2.
+- Source: https://arxiv.org/abs/1912.13445v2
+- PDF source: https://arxiv.org/pdf/1912.13445v2
+- Reading copy: `pillutla-2022-robust-aggregation-arxiv-v2.pdf`
+- Reading anchor: Sections 2–3 for the geometric-median oracle and RFA; Appendix C for smoothed Weiszfeld convergence.
+- Website note: [method note](../website/docs/dimensions/aggregation/geometric-median.md)
+
+### P012 — Measuring the Effects of Non-Identical Data Distribution for Federated Visual Classification
+
+- Authors: Tzu-Ming Harry Hsu, Hang Qi, Matthew Brown
+- Publication: arXiv:1909.06335v1; Author preprint, September 2019.
+- Source: https://arxiv.org/abs/1909.06335v1
+- PDF source: https://arxiv.org/pdf/1909.06335v1
+- Reading copy: `hsu-2019-fedavgm-arxiv-v1.pdf`
+- Reading anchor: Section 4.2 for server momentum; distinguish the displayed recurrence from Nesterov momentum used in experiments.
+- Website note: [method note](../website/docs/dimensions/aggregation/fedavgm.md)

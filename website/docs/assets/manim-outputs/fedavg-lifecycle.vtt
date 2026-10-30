@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.600 --> 00:00:07.300
+Two honest clients participate. Their raw examples remain local.
+
+2
+00:00:07.300 --> 00:00:15.000
+The server sends w = 1 to both clients. Model parameters travel; training data do not.
+
+3
+00:00:15.000 --> 00:00:21.100
+Each client takes two full-batch gradient steps with learning rate 0.1.
+
+4
+00:00:21.100 --> 00:00:27.800
+Client A: gradient −2 gives 1.20. Client B: gradient −8 gives 1.80.
+
+5
+00:00:27.800 --> 00:00:36.500
+The next gradients are evaluated at different local parameters: 1.20 and 1.80.
+
+6
+00:00:36.500 --> 00:00:41.100
+Averaging B’s three identical losses leaves the mean loss (2w − 4)².
+
+7
+00:00:41.100 --> 00:00:49.800
+Clients return 1.36 and 1.96. The server has not seen their raw examples.
+
+8
+00:00:49.800 --> 00:01:04.000
+Full participation: weights are 1/4 and 3/4. They reflect sample counts, not trust.
+
+9
+00:01:04.000 --> 00:01:12.200
+The new global model is 1.81. Broadcast it again and repeat until the stopping rule is met.
+
+10
+00:01:12.200 --> 00:01:17.200
+Keeping data local is not a privacy guarantee. This example assumes honest, synchronous clients.
