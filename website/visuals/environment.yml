@@ -1,3 +1,5 @@
+# TeX is installed separately: latex + dvisvgm + standalone/preview/amsfonts.
+# See README.md for the tested TinyTeX setup and PATH order.
 name: fl-manim
 channels:
   - conda-forge

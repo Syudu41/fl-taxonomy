@@ -85,7 +85,7 @@ Visual reference: [Northstar-RF Home taxonomy](https://northstar-rf.pages.dev/).
 
 The project-local [minim-agent skill](../.agents/skills/minim-agent/SKILL.md) creates original mathematical workflow and neural-network visuals. Editable scene source and isolated rendering dependencies are in `visuals/`; the [rendering guide](visuals/README.md) contains the tested command.
 
-Final artifacts go in `docs/assets/manim-outputs/`: MP4, poster, WebVTT, transcript, and metadata. The FL introduction embeds the 1080p silent FedAvg video with native controls and chapter buttons. Captions are baked into the video; the optional caption track is not enabled by default to avoid duplicates. Re-render before building when scene source changes. GitHub Pages serves the final assets and does not install or run Manim.
+Final artifacts go in `docs/assets/manim-outputs/`: MP4, poster, WebVTT, transcript, and metadata. The FL introduction embeds the 1080p/60fps silent FedAvg video with LaTeX Computer Modern typography with native controls and chapter buttons. Captions are baked into the video; the optional caption track is not enabled by default to avoid duplicates. Re-render before building when scene source changes. GitHub Pages serves the final assets and does not install or run Manim.
 
 The workflow illustrates one honest, synchronous, full-participation round. It is a teaching example, not an experiment or privacy guarantee. Frame inspection, arithmetic checks, and browser playback validation accompany production rendering.
 

@@ -2,24 +2,26 @@
 
 Silent, captioned original teaching animation. Full participation; honest synchronous clients. Numerical data are invented.
 
+Motion between local-step endpoints is visual interpolation, not additional optimization steps. The merging dots illustrate the weighted mean geometrically.
+
 Algorithm source: [McMahan et al., Section 2 and Algorithm 1](https://proceedings.mlr.press/v54/mcmahan17a.html).
 
-**00:00:00.600** — Two honest clients participate. Their raw examples remain local.
+**00:00:00.000** — Two clients keep their data locally; the server coordinates one shared model.
 
-**00:00:07.300** — The server sends w = 1 to both clients. Model parameters travel; training data do not.
+**00:00:05.650** — Broadcast the same parameter to both clients: each starts at w = 1.
 
-**00:00:15.000** — Each client takes two full-batch gradient steps with learning rate 0.1.
+**00:00:13.150** — Use the model y = wx and mean squared error; take two local gradient steps.
 
-**00:00:21.100** — Client A: gradient −2 gives 1.20. Client B: gradient −8 gives 1.80.
+**00:00:20.300** — First step: gradients -2 and -8 give different local updates.
 
-**00:00:27.800** — The next gradients are evaluated at different local parameters: 1.20 and 1.80.
+**00:00:26.450** — Second step: both gradients are now -1.6. The endpoints are 1.36 and 1.96.
 
-**00:00:36.500** — Averaging B’s three identical losses leaves the mean loss (2w − 4)².
+**00:00:33.800** — Clients send their final model parameters; their training examples stay local.
 
-**00:00:41.100** — Clients return 1.36 and 1.96. The server has not seen their raw examples.
+**00:00:42.250** — Full participation: one example at A, three at B. Their weights are 1/4 and 3/4.
 
-**00:00:49.800** — Full participation: weights are 1/4 and 3/4. They reflect sample counts, not trust.
+**00:00:51.400** — The weighted mean is 1.81: three times closer to B than to A.
 
-**00:01:04.000** — The new global model is 1.81. Broadcast it again and repeat until the stopping rule is met.
+**00:01:00.850** — Broadcast w = 1.81. Repeat local training and aggregation until the chosen stopping rule.
 
-**00:01:12.200** — Keeping data local is not a privacy guarantee. This example assumes honest, synchronous clients.
+**00:01:09.250** — Keeping data local is not a privacy guarantee: model updates can still reveal information.

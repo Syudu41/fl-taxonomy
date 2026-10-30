@@ -26,19 +26,19 @@ This is the basic server-coordinated workflow used in the [original FedAvg paper
 This original Manim animation follows one complete round: choose the participants, send the shared model, train locally, return parameters, average, and start the next round. It uses the [FedAvg note's worked example](dimensions/aggregation/fedavg.md#one-complete-round): two honest clients, full participation, two full-batch local steps, and sample-count weights. The numbers are teaching arithmetic, not a reproduced experiment. Algorithm source: [McMahan et al., Section 2 and Algorithm 1](https://proceedings.mlr.press/v54/mcmahan17a.html).
 
 <figure class="workflow-film">
-  <video id="fedavg-film" controls playsinline preload="metadata" poster="assets/manim-outputs/fedavg-lifecycle-poster.png" aria-label="FedAvg life cycle: a silent, captioned mathematical animation" aria-describedby="film-description">
-    <source src="assets/manim-outputs/fedavg-lifecycle.mp4" type="video/mp4">
-    <track kind="captions" src="assets/manim-outputs/fedavg-lifecycle.vtt" srclang="en" label="English">
+  <video id="fedavg-film" controls playsinline preload="metadata" poster="assets/manim-outputs/fedavg-lifecycle-poster.png?v=cmr60" aria-label="FedAvg life cycle: a silent, captioned mathematical animation" aria-describedby="film-description">
+    <source src="assets/manim-outputs/fedavg-lifecycle.mp4?v=cmr60" type="video/mp4">
+    <track kind="captions" src="assets/manim-outputs/fedavg-lifecycle.vtt?v=cmr60" srclang="en" label="English">
     Your browser does not support embedded video. Open the MP4 using the download link below.
   </video>
-  <figcaption id="film-description">Original Manim animation · 1080p · approximately 77 seconds · silent with visible captions. Pause, replay, or jump to a stage below.</figcaption>
+  <figcaption id="film-description">Original Manim animation · 1080p / 60 fps · Computer Modern · approximately 74 seconds · silent with visible captions. Pause, replay, or jump to a stage below.</figcaption>
   <nav class="film-chapters" aria-label="Video chapters">
-    <button type="button" data-video-seek="0.6">01 · Participants</button>
-    <button type="button" data-video-seek="7.3">02 · Broadcast</button>
-    <button type="button" data-video-seek="15">03 · Local training</button>
-    <button type="button" data-video-seek="41.1">04 · Return models</button>
-    <button type="button" data-video-seek="49.8">05 · Weighted mean</button>
-    <button type="button" data-video-seek="64">06 · Next round</button>
+    <button type="button" data-video-seek="0">01 · Participants</button>
+    <button type="button" data-video-seek="4.95">02 · Broadcast</button>
+    <button type="button" data-video-seek="12.45">03 · Local training</button>
+    <button type="button" data-video-seek="33.1">04 · Return models</button>
+    <button type="button" data-video-seek="41.55">05 · Weighted mean</button>
+    <button type="button" data-video-seek="60.15">06 · Next round</button>
   </nav>
 </figure>
 
