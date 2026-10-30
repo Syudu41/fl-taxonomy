@@ -83,7 +83,7 @@ Visual reference: [Northstar-RF Home taxonomy](https://northstar-rf.pages.dev/).
 
 ## Publish
 
-Live: https://syudu41.github.io/FL-survey/
+Live: https://syudu41.github.io/flsurvey/
 
 Push website changes to `main`; `.github/workflows/pages.yml` builds and deploys GitHub Pages. Committing alone does not publish. Check the Actions result before assuming a release is live.
 

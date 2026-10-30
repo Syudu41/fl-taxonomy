@@ -1,6 +1,6 @@
 site_name: Federated Learning
 site_author: Sudarshan
-site_url: https://syudu41.github.io/FL-survey/
+site_url: https://syudu41.github.io/flsurvey/
 site_description: A comprehensive federated learning survey with visual navigation, concept notes, and paper references.
 docs_dir: docs
 site_dir: site
